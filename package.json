@@ -1,0 +1,27 @@
+{
+    "name": "WakCropImages",
+    "studioName": "WakCropImages",
+    "category": "Custom Widgets",
+    "iconPath": "/icons/widget.png",
+    "author": "Daniel Santiago G—mez",
+    "contributors": [
+        "Daniel Santiago G—mez"
+    ],
+    "version": "1.0.0",
+    "copyright": "(c) 2014 Widget Developer",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/developer/Widget.git"
+    },
+    "keywords": ["wakanda", "widget"],
+    "engines": {"wakanda": ">= 8"},
+    "license": "MIT",
+    "loadDependencies": [
+        {"id": "Widget_V2"},
+        {"id": "WakCropImages/widget.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "WakCropImages/cropper/src/cropper.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "WakCropImages/cropper/src/cropper.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "WakCropImages/css/widget.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "WakCropImages/designer.js", "studioOnly": true, "version": "1.0.0", "path": "WIDGETS_CUSTOM"}
+    ]
+}
