@@ -11,7 +11,7 @@ This widget has the following properties:
 ### Events
 This widget has the following events:
 
-* __save__: Fired when the button(save) is clicked. Here you can get the result of image editing as data URI scheme.
+* __save__: Fired when the button(save) is clicked. Here you can get the result of image editing as data URI scheme. Example: `var dataUri = event.data.dataUri;`
 
 
 ### More Information
