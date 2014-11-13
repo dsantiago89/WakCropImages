@@ -1,6 +1,21 @@
 ## WakCropImages Widget for [Wakanda](http://wakanda.org)
 
-The __WakCropImages__ widget allows you to display a image editor, which crop and resize image. See it in action.
+The __WakCropImages__ widget allows you to display a image editor, which crop and resize image. This widget is based on the Image Cropper plugin -written by Fengyuan Chen (https://github.com/fengyuanchen/cropper).
+
+Drag and drop to the Wakanda Studio
+
+!["captura1"](http://nsae01.casimages.net/img/2014/11/13/141113050643401712.png "captura1")
+
+Widget in the browser
+
+!["captura2"](http://nsae01.casimages.net/img/2014/11/13/141113050643669326.png "captura2")
+
+!["captura3"](http://nsae01.casimages.net/img/2014/11/13/141113050643837820.png "captura3")
+
+Get the result
+
+!["captura4"](http://nsae01.casimages.net/img/2014/11/13/14111305064465974.png "captura4")
+
 
 ### Properties
 This widget has the following properties:
