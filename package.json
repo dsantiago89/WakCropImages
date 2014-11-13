@@ -3,15 +3,15 @@
     "studioName": "WakCropImages",
     "category": "Custom Widgets",
     "iconPath": "/icons/widget.png",
-    "author": "Daniel Santiago G—mez",
+    "author": "Daniel Santiago Gâ€”mez",
     "contributors": [
-        "Daniel Santiago G—mez"
+        "Daniel Santiago Gâ€”mez"
     ],
     "version": "1.0.0",
     "copyright": "(c) 2014 Widget Developer",
     "repository": {
         "type": "git",
-        "url": "https://github.com/developer/Widget.git"
+        "url": "https://github.com/dsantiago89/WakCropImages"
     },
     "keywords": ["wakanda", "widget"],
     "engines": {"wakanda": ">= 8"},
