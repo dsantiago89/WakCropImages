@@ -15,12 +15,30 @@ WAF.define('WakCropImages', ['waf-core/widget'], function(widget) {
         placeholder: widget.property({
         	
     		type: 'string',
-    		defaultValue: 'Drop files to crop (or click)',
+    		defaultValue: 'Drag file to crop (or click)',
     		bindable : false,
     		onChange:function(val){
     			this.placeholder(val);
     			this.$TapWork.find("p").text(val);
     		}
+    	}),
+    	
+    	folder: widget.property({
+        	
+    		type: 'string',
+    		defaultValue: 'tmp',
+    		bindable : false,
+    		onChange:function(val){
+    			this.folder(val);
+    			
+    		}
+    	}),
+    	
+    	dataclass: widget.property({
+    		type:'datasource',
+    		attributes: [{
+                name: 'image'
+            }]
     	})
 
     });
@@ -68,6 +86,10 @@ WAF.define('WakCropImages', ['waf-core/widget'], function(widget) {
 		this.eventListener_crop();
 		this.eventListener_upload();
 		
+	};
+	
+	WakCropImages.prototype.getValue = function(){
+		return this.data;
 	};
     
     WakCropImages.prototype.eventListener_tapWork = function(){
@@ -124,6 +146,8 @@ WAF.define('WakCropImages', ['waf-core/widget'], function(widget) {
 		
 		this.$Remove.on(event_type,function(event){
 			
+			self.data = null;
+			
 			self.$Image.cropper("destroy");
 			self.$Image.attr("src","");
 			
@@ -170,7 +194,70 @@ WAF.define('WakCropImages', ['waf-core/widget'], function(widget) {
     	var event_type =  (self.device) ? 'touchstart' : 'mousedown';
     	
     	this.$Upload.on(event_type,function(){
-    		self.fire('save',{dataUri:self.data});
+    		    		
+    		var byteString;
+    		var dataURI = self.data;
+		    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+		        byteString = atob(dataURI.split(',')[1]);
+		    else
+		        byteString = unescape(dataURI.split(',')[1]);
+
+		    // separate out the mime component
+		    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+		    // write the bytes of the string to a typed array
+		    var ia = new Uint8Array(byteString.length);
+		    for (var i = 0; i < byteString.length; i++) {
+		        ia[i] = byteString.charCodeAt(i);
+		    }
+			
+			var 
+				extension = mimeString.split('/')[1],
+				fileName = "image_" + new Date().getTime() + "." + extension,
+		    	blob = new Blob([ia], {type:mimeString}),
+		   		formData = new FormData(),
+				xhr = new XMLHttpRequest();
+			
+			formData.append('file', blob, fileName);
+						
+			if (self.dataclass() && self.dataclass().getDataClass() && self.dataclass().getDataClass().getName) {
+               
+                formData.append("config", JSON.stringify({
+			        replace: false,
+			        datasource : {
+	                    dsname  : self.dataclass().getDataClass().getName(),
+	                    id      : self.dataclass().getCurrentElement()?self.dataclass().getCurrentElement().getKey():null,
+						field   : self.dataclass.attributeFor('image'),
+	                    saveOnDS: true
+	                }
+			    }));
+			    
+            }else{
+            	
+            	formData.append("config", JSON.stringify({
+			        folder: self.folder(),
+			        replace: false
+			    }));
+            }
+			
+		    
+		    
+		    function sendfile() {
+			    if (xhr.readyState == 4) {
+			    	var response = JSON.parse(xhr.response);
+			    	if(response.error){
+			    		self.fire('errorUpload',{response:response});
+			    	}else{
+			    		self.fire('afterUpload',{response:response[0]});
+			    	}
+			    	
+			    }
+			}
+
+			xhr.onreadystatechange = sendfile;
+			xhr.open("POST","/waUpload/upload",true);
+			xhr.send(formData);
+			
     	});
     	
     };
@@ -257,6 +344,7 @@ WAF.define('WakCropImages', ['waf-core/widget'], function(widget) {
 		$node.find($(".cropper-container")).show();
 		$node.find($('.preview-data')).remove();
 		this.$Upload.prop("disabled",true);
+		self.data = null;
 		
     };
 

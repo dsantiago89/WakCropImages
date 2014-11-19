@@ -3,9 +3,9 @@
     WakCropImages.setWidth('320');
     WakCropImages.setHeight('200');
     
-    WakCropImages.addEvent('save');
+    WakCropImages.addEvent('afterUpload');
+    WakCropImages.addEvent('errorUpload');
 
-    /* Add a Label property */
     WakCropImages.addLabel({
         'defaultValue': 'Label',
         'position': 'top'
