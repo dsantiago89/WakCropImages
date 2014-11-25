@@ -2,31 +2,27 @@
 
 The __WakCropImages__ widget allows you to display a image editor, which crop and resize image. The result of your editing, you can upload to wakanda server's folder or in an attribute of type image. This widget is based on the Image Cropper plugin -written by Fengyuan Chen (https://github.com/fengyuanchen/cropper).
 
-Drag and drop to the Wakanda Studio
-
-!["captura1"](http://nsae01.casimages.net/img/2014/11/13/141113050643401712.png "captura1")
-
-Widget in the browser
-
-!["captura2"](http://nsae01.casimages.net/img/2014/11/13/141113050643669326.png "captura2")
-
-!["captura3"](http://nsae01.casimages.net/img/2014/11/13/141113050643837820.png "captura3")
-
-Get the result
-
-!["captura4"](http://nsae01.casimages.net/img/2014/11/13/14111305064465974.png "captura4")
-
-
 ### Properties
 This widget has the following properties:
 
-* __placeholder__: placeholder of the widget.
-* __label__: label of the widget
+* __placeholder__: Placeholder of the widget.
+* __label__: Label of the widget.
+* __Folder__: Destination Folder image.
+
+* __Source__: DataSource destination.
+* __Image Attributte__: Image attribute destination where the image will be saved.
+
+### Methods
+This widget has the following methods:
+
+* __getValue__: Get the result of editing. The result this format DataURI.
+
 
 ### Events
 This widget has the following events:
 
-* __save__: Fired when the button(save) is clicked. Here you can get the result of image editing as data URI scheme. Example: `var dataUri = event.data.dataUri;`
+* __AfterUpload__: Fired after having uploaded the file.
+* __ErrorUpload__: Fired when there is an error in the file upload.
 
 
 ### More Information
