@@ -5,8 +5,8 @@ The __WakCropImages__ widget allows you to display a image editor, which crop an
 ### Properties
 This widget has the following properties:
 
-* __placeholder__: Placeholder of the widget
-* __label__: Label of the widget
+* __Placeholder__: Placeholder of the widget
+* __Label__: Label of the widget
 * __Folder__: Destination Folder image
 * __Source__: DataSource destination
 * __Image Attributte__: Image attribute destination where the image will be saved
