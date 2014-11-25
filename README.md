@@ -2,6 +2,8 @@
 
 The __WakCropImages__ widget allows you to display a image editor, which crop and resize image. The result of your editing, you can upload to wakanda server's folder or in an attribute of type image. This widget is based on the Image Cropper plugin -written by Fengyuan Chen (https://github.com/fengyuanchen/cropper).
 
+[DEMO](https://www.youtube.com/watch?v=RieOcjCaSZg&feature=youtu.be).
+
 ### Properties
 This widget has the following properties:
 
